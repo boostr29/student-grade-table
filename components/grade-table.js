@@ -5,13 +5,13 @@ class GradeTable {
 
     updateGrades(grades) {
         var tbody = this.tableElement.children("tbody");
-        var $tr = $("<tr>");
-        var $id = $("<td>", {text: grades[0].id});
-        var $id = $("<td>", {text: grades[0].first});
-        var $id = $("<td>", {text: grades[0].id});
-
-        $tr.append($id);
-        tbody.empty().append($tr);
-        console.log(grades);
+        tbody.empty()
+        grades.forEach(data => {
+            var $row = $("<tr>");
+            var $name = $("<td>", {text: data.name});
+            var $course = $("<td>", {text: data.course});
+            var $grade = $("<td>", {text: data.grade});
+            tbody.append($row, $name, $course, $grade);
+        });
     }
 }
