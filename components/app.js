@@ -1,7 +1,7 @@
 class App {
     constructor(gradeTable) {
         this.handleGetGradesError = this.handleGetGradesError.bind(this);
-        this.handleGetGradesSucccess = this.handleGetGradesSucccess.bind(this);
+        this.handleGetGradesSuccess = this.handleGetGradesSuccess.bind(this);
         this.gradeTable = new GradeTable();
     }
 
@@ -9,7 +9,7 @@ class App {
         console.log(error);
     }
 
-    handleGetGradesSucccess(grades){
+    handleGetGradesSuccess(grades){
         this.gradeTable.updateGrades(grades);
     }
 
@@ -23,7 +23,7 @@ class App {
             }
         }
         $.ajax(requestPayload)
-            .done(this.handleGetGradesSucccess)
+            .done(this.handleGetGradesSuccess)
             .fail(this.handleGetGradesError);
     }
 
