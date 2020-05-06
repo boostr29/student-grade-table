@@ -11,7 +11,8 @@ class GradeTable {
             var $name = $("<td>", {text: data.name});
             var $course = $("<td>", {text: data.course});
             var $grade = $("<td>", {text: data.grade});
-            tbody.append($row, $name, $course, $grade);
+            $row.append($name, $course, $grade);
+            tbody.append($row);
         });
     }
 }
