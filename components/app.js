@@ -2,7 +2,7 @@ class App {
     constructor(gradeTable) {
         this.handleGetGradesError = this.handleGetGradesError.bind(this);
         this.handleGetGradesSucccess = this.handleGetGradesSucccess.bind(this);
-        this.gradeTable = gradeTable;
+        this.gradeTable = new GradeTable();
     }
 
     handleGetGradesError(error){
