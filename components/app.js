@@ -12,6 +12,13 @@ class App {
 
     handleGetGradesSuccess(grades){
         this.gradeTable.updateGrades(grades);
+
+        var gradeSum = 0;
+        grades.forEach(data => {
+            gradeSum += data.grade
+        });
+        var gradeAverage = gradeSum / grades.length;
+        console.log(gradeAverage);
     }
 
     getGrades() {
