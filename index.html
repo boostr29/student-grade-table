@@ -21,17 +21,51 @@
             </div>
             
         </header>
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th scope="col">Name</th>
-                <th scope="col">Course</th>
-                <th scope="col">Grade</th>
-            </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
+        <div class="row d-flex justify-content-between">
+            <div class="col-md-8 col-12">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Course</th>
+                        <th scope="col">Grade</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-4 col-12">
+                <form>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fas fa-user"></i></div>
+                            </div>
+                            <input type="text" class="form-control" id="student-name"  name="name" placeholder="Student Name">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fas fa-th-list"></i></div>
+                            </div>
+                            <input type="text" class="form-control" id="student-course" name="course" placeholder="Student Course">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fas fa-graduation-cap"></i></div>
+                            </div>
+                            <input type="text" class="form-control" id="student-grade" name="grade" placeholder="Student Grade">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-success mr-2">Add</button>
+                    <button type="reset" class="btn btn-outline-success">Cancel</button>
+                  </form>
+            </div>
+        </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
     <script src="components/app.js"></script>
