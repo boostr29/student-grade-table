@@ -15,10 +15,11 @@ class App {
 
         var gradeSum = 0;
         grades.forEach(data => {
-            gradeSum += data.grade
+            gradeSum += data.grade;
         });
         var gradeAverage = gradeSum / grades.length;
-        console.log(gradeAverage);
+
+        this.pageHeader.updateAverage(gradeAverage);
     }
 
     getGrades() {
