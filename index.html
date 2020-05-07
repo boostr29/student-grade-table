@@ -8,16 +8,24 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.css">
 </head>
 <body>
-    <div class="container">
+    <div class="container mt-4">
         <header>
-            <h1>Student Grade Table</h1>
+            <div class="row d-flex align-items-center justify-content-between p-3">
+                <div>
+                    <h1>Student Grade Table</h1>
+                </div>
+                <div>
+                    <h3>Average Grade <span class="badge badge-secondary">Test</span></h3>
+                </div>
+            </div>
+            
         </header>
         <table class="table table-striped">
             <thead>
             <tr>
                 <th scope="col">Name</th>
                 <th scope="col">Course</th>
-                <th scope="col">Student's Grade</th>
+                <th scope="col">Grade</th>
             </tr>
             </thead>
             <tbody>
