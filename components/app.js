@@ -24,9 +24,11 @@ class App {
         grades.forEach(data => {
             gradeSum += data.grade;
         });
-        var gradeAverage = gradeSum / grades.length;
-
-        this.pageHeader.updateAverage(gradeAverage.toFixed(2));
+        if (gradeSum > 0) {
+            var gradeAverage = gradeSum / grades.length;
+            gradeAverage = Math.round((gradeAverage + Number.EPSILON) * 100) / 100
+        } else { gradeAverage = 0 }
+        this.pageHeader.updateAverage(gradeAverage);
     }
 
     getGrades() {
@@ -78,7 +80,18 @@ class App {
     }
 
     deleteGrade(id) {
-        console.log(id);
+        var deleteURL = "https://sgt.lfzprototypes.com/api/grades/" + id;
+        var delPayload = {
+            method: "DELETE",
+            url: deleteURL,
+            dataType: "JSON",
+            headers: {
+                "X-Access-Token":"skbKnIuo"
+            }
+        }
+        $.ajax(delPayload)
+            .done(this.handleDeleteGradeSuccess)
+            .fail(this.handleDeleteGradeError);
     }
 
     handleDeleteGradeError(error) {

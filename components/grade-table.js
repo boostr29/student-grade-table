@@ -5,7 +5,7 @@ class GradeTable {
     }
 
     updateGrades(grades) {
-        grades ? true : this.noGradesElement.removeClass().addClass("d-block");
+        grades.length > 0 ? this.noGradesElement.removeClass().addClass("d-none") : this.noGradesElement.removeClass().addClass("d-block");
         var tbody = this.tableElement.children("tbody");
         tbody.empty();
         grades.forEach(studentData => {
@@ -20,10 +20,10 @@ class GradeTable {
 
     renderGradeRow(data, deleteGrade) {
         var $row = $("<tr>");
-        var $name = $("<td>", {text: data.name});
-        var $course = $("<td>", {text: data.course});
-        var $grade = $("<td>", {text: data.grade});
-        var $delete = $("<td>");
+        var $name = $("<td>", {text: data.name, class:"align-middle"});
+        var $course = $("<td>", {text: data.course, class:"align-middle"});
+        var $grade = $("<td>", {text: data.grade, class:"align-middle"});
+        var $delete = $("<td>", {class:"align-middle"});
         var $delBtn = $("<button>", { class:"btn btn-danger", text:"DELETE", click: function() { deleteGrade(data.id) } });
         $delete.append($delBtn);
         $row.append($name, $course, $grade, $delete);
