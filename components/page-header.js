@@ -5,6 +5,6 @@ class PageHeader {
 
     updateAverage(newAverage) {
         var $average = $(this.headerElement).find(".average-grade");
-        $average.append(newAverage);
+        $average.text(newAverage);
     }
 }
