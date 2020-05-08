@@ -24,7 +24,7 @@ class GradeTable {
         var $course = $("<td>", {text: data.course});
         var $grade = $("<td>", {text: data.grade});
         var $delete = $("<td>");
-        var $delBtn = $("<button>", { class:"btn btn-danger", text:"DELETE", click: deleteGrade });
+        var $delBtn = $("<button>", { class:"btn btn-danger", text:"DELETE", click: function() { deleteGrade(data.id) } });
         $delete.append($delBtn);
         $row.append($name, $course, $grade, $delete);
         return $row;
