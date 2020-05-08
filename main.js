@@ -1,5 +1,5 @@
 var $form = $("form");
-var gradeForm = new gradeForm($form);
+var gradeForm = new GradeForm($form);
 
 var $table = $(".table");
 var gradeTable = new GradeTable($table);
