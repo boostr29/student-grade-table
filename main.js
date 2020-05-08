@@ -2,7 +2,8 @@ var $form = $("form");
 var gradeForm = new GradeForm($form);
 
 var $table = $(".table");
-var gradeTable = new GradeTable($table);
+var $emptyTable = $(".no-grades");
+var gradeTable = new GradeTable($table, $emptyTable);
 
 var $header = $("header");
 var pageHeader = new PageHeader($header);

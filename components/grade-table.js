@@ -1,9 +1,11 @@
 class GradeTable {
-    constructor(tableElement) {
+    constructor(tableElement, noGradesElement) {
         this.tableElement = tableElement;
+        this.noGradesElement = noGradesElement;
     }
 
     updateGrades(grades) {
+        grades ? true : this.noGradesElement.removeClass().addClass("d-block");
         var tbody = this.tableElement.children("tbody");
         tbody.empty();
         grades.forEach(studentData => {
