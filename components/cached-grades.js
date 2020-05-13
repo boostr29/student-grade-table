@@ -17,4 +17,10 @@ class CachedGrades {
         var resultIndex = this.localTable.findIndex(x => x.id === id);
         this.localTable.splice(resultIndex, 1);
     }
+
+    createCachedGrade(grade) {
+        this.localTable.push(grade);
+        console.log(grade);
+        console.log(this.localTable);
+    }
 }

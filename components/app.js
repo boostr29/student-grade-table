@@ -87,9 +87,10 @@ class App {
         this.gradeForm.handleError(error);
     }
 
-    handleCreateGradeSuccess() {
+    handleCreateGradeSuccess(grade) {
         this.gradeForm.resetForm();
-        this.getGrades();
+        this.cachedGrades.createCachedGrade(grade);
+        this.gradeTable.updateGrades(this.cachedGrades.localTable);
     }
 
     deleteGrade(id) {
