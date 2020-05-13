@@ -20,7 +20,5 @@ class CachedGrades {
 
     createCachedGrade(grade) {
         this.localTable.push(grade);
-        console.log(grade);
-        console.log(this.localTable);
     }
 }
