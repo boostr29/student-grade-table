@@ -45,7 +45,7 @@ class App {
     getGradeAverage(grades) {
         var gradeSum = 0;
         grades.forEach(data => {
-            gradeSum += data.grade;
+            gradeSum += parseInt(data.grade);
         });
         if (gradeSum > 0) {
             var gradeAverage = gradeSum / grades.length;
@@ -91,6 +91,7 @@ class App {
         this.gradeForm.resetForm();
         this.cachedGrades.createCachedGrade(grade);
         this.gradeTable.updateGrades(this.cachedGrades.localTable);
+        this.getGradeAverage(this.cachedGrades.localTable);
     }
 
     deleteGrade(id) {
