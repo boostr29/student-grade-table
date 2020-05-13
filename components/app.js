@@ -1,10 +1,11 @@
 class App {
-    constructor(gradeTable, pageHeader, gradeForm, errorBox) {
+    constructor(gradeTable, pageHeader, gradeForm, getLocalGrades) {
         this.handleGetGradesError = this.handleGetGradesError.bind(this);
         this.handleGetGradesSuccess = this.handleGetGradesSuccess.bind(this);
         this.gradeTable = gradeTable;
         this.pageHeader = pageHeader;
         this.gradeForm = gradeForm;
+        this.localGrades = localGrades;
         this.createGrade = this.createGrade.bind(this);
         this.handleCreateGradeError = this.handleCreateGradeError.bind(this);
         this.handleCreateGradeSuccess = this.handleCreateGradeSuccess.bind(this);
@@ -23,6 +24,7 @@ class App {
 
     handleGetGradesSuccess(grades){
         this.gradeTable.updateGrades(grades);
+        this.getLocalGrades.storeGrades(grades);
 
         var gradeSum = 0;
         grades.forEach(data => {
@@ -134,7 +136,8 @@ class App {
             .fail(this.handleUpdateGradeError);
     }
 
-    handleUpdateGradeSuccess(grades) {
+    handleUpdateGradeSuccess(grade) {
+        this.getLocal
         this.getGrades();
         this.gradeForm.renderAddButton();
         this.gradeForm.resetForm();
