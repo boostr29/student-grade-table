@@ -1,5 +1,5 @@
 class App {
-    constructor(gradeTable, pageHeader, gradeForm) {
+    constructor(gradeTable, pageHeader, gradeForm, errorBox) {
         this.handleGetGradesError = this.handleGetGradesError.bind(this);
         this.handleGetGradesSuccess = this.handleGetGradesSuccess.bind(this);
         this.gradeTable = gradeTable;
@@ -11,6 +11,10 @@ class App {
         this.deleteGrade = this.deleteGrade.bind(this);
         this.handleDeleteGradeError = this.handleDeleteGradeError.bind(this);
         this.handleDeleteGradeSuccess = this.handleDeleteGradeSuccess.bind(this)
+        this.pullData = this.pullData.bind(this);
+        this.updateGrade = this.updateGrade.bind(this);
+        this.handleUpdateGradeError = this.handleUpdateGradeError.bind(this);
+        this.handleUpdateGradeSuccess = this.handleUpdateGradeSuccess.bind(this);
     }
 
     handleGetGradesError(error){
@@ -48,7 +52,10 @@ class App {
     start() {
         this.getGrades();
         this.gradeForm.onSubmit(this.createGrade);
+        this.gradeForm.onUpdate(this.updateGrade);
         this.gradeTable.onDeleteClick(this.deleteGrade);
+        this.gradeTable.onPullClick(this.pullData);
+        this.gradeForm.showButtons();
     }
 
     createGrade(name, course, grade) {
@@ -72,10 +79,11 @@ class App {
     }
 
     handleCreateGradeError(error) {
-        console.log(error);
+        this.gradeForm.handleError(error);
     }
 
     handleCreateGradeSuccess() {
+        this.gradeForm.resetForm();
         this.getGrades();
     }
 
@@ -100,5 +108,39 @@ class App {
 
     handleDeleteGradeSuccess() {
         this.getGrades();
+    }
+
+    pullData(name, course, grade, id) {
+        this.gradeForm.updateForm(name, course, grade, id);
+    }
+    
+    updateGrade(name, course, grade, id) {
+        var updateURL = "https://sgt.lfzprototypes.com/api/grades/" + id;
+        var updatePayload = {
+            method: "PATCH",
+            url: updateURL,
+            dataType: "JSON",
+            headers: {
+                "X-Access-Token":"skbKnIuo"
+            },
+            data : {
+                "name": name,
+                "course": course,
+                "grade" : grade
+            }
+        }
+        $.ajax(updatePayload)
+            .done(this.handleUpdateGradeSuccess)
+            .fail(this.handleUpdateGradeError);
+    }
+
+    handleUpdateGradeSuccess(grades) {
+        this.getGrades();
+        this.gradeForm.renderAddButton();
+        this.gradeForm.resetForm();
+    }
+
+    handleUpdateGradeError(error) {
+        this.gradeForm.handleError(error);
     }
 }
