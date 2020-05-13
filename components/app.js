@@ -1,11 +1,11 @@
 class App {
-    constructor(gradeTable, pageHeader, gradeForm, getLocalGrades) {
+    constructor(gradeTable, pageHeader, gradeForm, cachedGrades) {
         this.handleGetGradesError = this.handleGetGradesError.bind(this);
         this.handleGetGradesSuccess = this.handleGetGradesSuccess.bind(this);
         this.gradeTable = gradeTable;
         this.pageHeader = pageHeader;
         this.gradeForm = gradeForm;
-        this.localGrades = localGrades;
+        this.cachedGrades = cachedGrades;
         this.createGrade = this.createGrade.bind(this);
         this.handleCreateGradeError = this.handleCreateGradeError.bind(this);
         this.handleCreateGradeSuccess = this.handleCreateGradeSuccess.bind(this);
@@ -24,7 +24,7 @@ class App {
 
     handleGetGradesSuccess(grades){
         this.gradeTable.updateGrades(grades);
-        this.getLocalGrades.storeGrades(grades);
+        this.cachedGrades.storeGrades(grades);
 
         var gradeSum = 0;
         grades.forEach(data => {
@@ -90,6 +90,7 @@ class App {
     }
 
     deleteGrade(id) {
+        this.deleteGradeId = id;
         var deleteURL = "https://sgt.lfzprototypes.com/api/grades/" + id;
         var delPayload = {
             method: "DELETE",
@@ -109,7 +110,8 @@ class App {
     }
 
     handleDeleteGradeSuccess() {
-        this.getGrades();
+        this.cachedGrades.deleteCachedGrade(this.deleteGradeId);
+        this.gradeTable.updateGrades(this.cachedGrades.localTable);
     }
 
     pullData(name, course, grade, id) {
@@ -137,8 +139,8 @@ class App {
     }
 
     handleUpdateGradeSuccess(grade) {
-        this.getLocal
-        this.getGrades();
+        this.cachedGrades.updateCachedGrade(grade);
+        this.gradeTable.updateGrades(this.cachedGrades.localTable);
         this.gradeForm.renderAddButton();
         this.gradeForm.resetForm();
     }

@@ -1,4 +1,4 @@
-var getLocalGrades = new GetLocalGrades();
+var cachedGrades = new CachedGrades();
 
 var $form = $("form");
 var $buttons = $(".form-button");
@@ -14,5 +14,5 @@ var gradeTable = new GradeTable($table, $emptyTable);
 var $header = $("header");
 var pageHeader = new PageHeader($header);
 
-var app = new App(gradeTable, pageHeader, gradeForm, getLocalGrades);
+var app = new App(gradeTable, pageHeader, gradeForm, cachedGrades);
 app.start();

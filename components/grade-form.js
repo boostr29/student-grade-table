@@ -69,7 +69,8 @@ class GradeForm {
         }
     }
 
-    handleCancelClick() {
+    handleCancelClick(event) {
+        event.preventDefault();
         this.renderAddButton();
     }
 
