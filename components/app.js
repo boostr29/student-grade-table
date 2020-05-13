@@ -25,16 +25,7 @@ class App {
     handleGetGradesSuccess(grades){
         this.gradeTable.updateGrades(grades);
         this.cachedGrades.storeGrades(grades);
-
-        var gradeSum = 0;
-        grades.forEach(data => {
-            gradeSum += data.grade;
-        });
-        if (gradeSum > 0) {
-            var gradeAverage = gradeSum / grades.length;
-            gradeAverage = Math.round((gradeAverage + Number.EPSILON) * 100) / 100
-        } else { gradeAverage = 0 }
-        this.pageHeader.updateAverage(gradeAverage);
+        this.getGradeAverage(grades);
     }
 
     getGrades() {
@@ -49,6 +40,18 @@ class App {
         $.ajax(requestPayload)
             .done(this.handleGetGradesSuccess)
             .fail(this.handleGetGradesError);
+    }
+
+    getGradeAverage(grades) {
+        var gradeSum = 0;
+        grades.forEach(data => {
+            gradeSum += data.grade;
+        });
+        if (gradeSum > 0) {
+            var gradeAverage = gradeSum / grades.length;
+            gradeAverage = Math.round((gradeAverage + Number.EPSILON) * 100) / 100
+        } else { gradeAverage = 0 }
+        this.pageHeader.updateAverage(gradeAverage);
     }
 
     start() {
@@ -112,6 +115,7 @@ class App {
     handleDeleteGradeSuccess() {
         this.cachedGrades.deleteCachedGrade(this.deleteGradeId);
         this.gradeTable.updateGrades(this.cachedGrades.localTable);
+        this.getGradeAverage(this.cachedGrades.localTable);
     }
 
     pullData(name, course, grade, id) {
@@ -143,6 +147,7 @@ class App {
         this.gradeTable.updateGrades(this.cachedGrades.localTable);
         this.gradeForm.renderAddButton();
         this.gradeForm.resetForm();
+        this.getGradeAverage(this.cachedGrades.localTable)
     }
 
     handleUpdateGradeError(error) {
