@@ -59,7 +59,7 @@ class GradeForm {
         var studentName = form.get("name");
         var studentCourse = form.get("course");
         var studentGrade = form.get("grade");
-        var studentId = form.get("id");
+        var studentId = form.get("student-id");
 
         var clicked = this.formElement.find("button").click(event.target.id);
         if (clicked.hasClass("update-btn")) {
@@ -77,7 +77,6 @@ class GradeForm {
         var errors = JSON.parse(error.responseText).errors;
         var errorModal = this.errorBox.find(".error-list").empty()
         errors.forEach(errorMessage => {
-            console.log(errorMessage);
             var $error = $("<div>", {text: errorMessage, class: "alert alert-danger" });
             errorModal.append($error);
         });

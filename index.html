@@ -64,7 +64,11 @@
                             <input type="number" class="form-control" id="student-grade" name="grade" placeholder="Student Grade">
                         </div>
                     </div>
-                    <input type="text" class="d-none" id="student-id" name="id" placeholder="Student ID">
+                    <div class="form-group d-none">
+                        <div class="input-group">
+                            <input type="number" id="student-id" name="student-id">
+                        </div>
+                    </div>
                     <div>
                         <div class="d-inline form-button mr-2">
                         </div>
@@ -73,7 +77,7 @@
                     </div>
                 </form>
                 <!-- Modal HTML -->
-                <div id="myModal" class="modal fade error-message" tabindex="-1">
+                <div id="error-modal" class="modal fade error-message" tabindex="-1">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -81,7 +85,7 @@
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                             </div>
                             <div class="modal-body">
-                                <div class="error-list pt-2" role="alert">
+                                <div class="error-list pt-2" role="error">
                                 </div>
                             </div>
                         </div>
@@ -97,6 +101,7 @@
     <script src="components/grade-table.js"></script>
     <script src="components/page-header.js"></script>
     <script src="components/grade-form.js"></script>
+    <script src="components/cached-grades.js"></script>
     <script src="main.js"></script>
 </body>
 </html>
